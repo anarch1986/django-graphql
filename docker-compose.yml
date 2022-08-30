@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=${DBNAME}
+      - POSTGRES_USER=${DBUSER}
+      - POSTGRES_PASSWORD=${DBPASSWORD}
+    ports:
+      - ${DBPORT}:${DBPORT}
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    command:  > 
+      bash -c "python manage.py migrate && 
+      python manage.py loaddata notebook/seeds/fixtures.json && 
+      python manage.py runserver [::]:${BACKEND_PORT}"
+    volumes:
+      - ./backend:/app
+      - ./images:/app/images
+      - ./logs:/app/logs
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+      - POSTGRES_DB=${DBNAME}
+      - POSTGRES_USER=${DBUSER}
+      - POSTGRES_PASSWORD=${DBPASSWORD}
+      - POSTGRES_HOST=${DBHOST}
+      - POSTGRES_PORT=${DBPORT}
+      - ACCESS_TOKEN=${ACCESS_TOKEN}
+      - FRONTEND_HOST=${FRONTEND_HOST}
+      - FRONTEND_PORT=${FRONTEND_PORT}
+      - DJANGO_SECRET=${DJANGO_SECRET}
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+    depends_on:
+      - db
+    links:
+      - db:db
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      -  ./frontend/src:/app/src
+    ports:
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+    command: npm run serve

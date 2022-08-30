@@ -1,0 +1,83 @@
+[
+    {
+        "model": "notebook.category",
+        "pk": 1,
+        "fields": {
+			"name": "Family"
+            }
+    },
+    {
+        "model": "notebook.category",
+        "pk": 2,
+        "fields": {
+			"name": "Work"
+            }
+    },
+    {
+        "model": "notebook.category",
+        "pk": 3,
+        "fields": {
+			"name": "Shopping"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 1,
+        "fields": {
+			"title": "Lorem Ipsum",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis",
+            "category": 1,
+            "status": "active"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 2,
+        "fields": {
+			"title": "Shopping List",
+            "text": "bread, 1kg; milk 2l; cheese (CHESTER); MILKA!!!",
+            "category": 3,
+            "status": "active"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 3,
+        "fields": {
+			"title": "Meeting on Friday",
+            "text": "Talk to Josh",
+            "category": 2,
+            "status": "active"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 4,
+        "fields": {
+			"title": "App Launch",
+            "text": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores",
+            "category": 2,
+            "status": "active"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 5,
+        "fields": {
+			"title": "Daughter's Birthday",
+            "text": "Buy presents, cake etc.",
+            "category": 1,
+            "status": "active"
+            }
+    },
+    {
+        "model": "notebook.note",
+        "pk": 6,
+        "fields": {
+			"title": "Training",
+            "text": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint.",
+            "category": 2,
+            "status": "active"
+            }
+    }
+]

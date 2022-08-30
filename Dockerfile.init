@@ -1,0 +1,14 @@
+FROM python:3
+ENV PYTHONUNBUFFERED=1
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install -r requirements.txt
+RUN django-admin startproject django_graphql_backend
+RUN cd django_graphql_backend &&\ 
+django-admin startapp notebook
+CMD python django_graphql_backend/manage.py runserver 0.0.0.0:8000
+
+
+# docker build -f Dockerfile.init -t django-graphql-init  .
+# docker run --name django-graphql-init -d django-graphql-init
+# docker cp django-graphql-init:/app/django_graphql_backend/. ./backend
